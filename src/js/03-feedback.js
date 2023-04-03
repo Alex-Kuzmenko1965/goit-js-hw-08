@@ -35,7 +35,7 @@ function checkStorageContent() {
 
 checkStorageContent();
 
-function onBtnSubmit() {
+function onBtnSubmit() {  
   console.log(localStorage.getItem('STORAGE_KEY'));
   form.email.value = '';
   form.message.value = '';
