@@ -18,7 +18,7 @@ function onInputChange (event) {
   };  
   console.log('feedBackForm', feedBackForm);
 
-  feedBackFormJSON = JSON.stringify(feedBackForm);
+  const feedBackFormJSON = JSON.stringify(feedBackForm);
   localStorage.setItem('STORAGE_KEY', feedBackFormJSON);
   console.log('STORAGE_KEY', localStorage.getItem('STORAGE_KEY'));  
 };
