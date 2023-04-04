@@ -4,6 +4,9 @@ const STORAGE_KEY = "feedback-form-state";
 const form = document.querySelector('.feedback-form')
 
 let saveFeedBackForm;
+let feedBackForm;
+let parseFeedBackForm;
+
 
 form.addEventListener('input', throttle(onInputChange, 500));
 form.addEventListener('submit', onBtnSubmit);
@@ -12,7 +15,7 @@ function onInputChange (event) {
   // console.log('email', form.email.value);
   // console.log('message', form.message.value);
 
-  const feedBackForm = {
+  feedBackForm = {
     email: form.email.value,  
     message: form.message.value,        
   };  
@@ -20,12 +23,12 @@ function onInputChange (event) {
 
   const feedBackFormJSON = JSON.stringify(feedBackForm);
   localStorage.setItem('STORAGE_KEY', feedBackFormJSON);
-  console.log('STORAGE_KEY', localStorage.getItem('STORAGE_KEY'));  
+  // console.log('STORAGE_KEY', localStorage.getItem('STORAGE_KEY'));  
 };
 
-function checkStorageContent() {
+function checkStorageContent() {  
   saveFeedBackForm = localStorage.getItem('STORAGE_KEY');
-  let parseFeedBackForm = JSON.parse(saveFeedBackForm);
+  parseFeedBackForm = JSON.parse(saveFeedBackForm);
   // console.log('parseFeedBackForm', parseFeedBackForm);
   if (saveFeedBackForm) {    
     form.email.value = parseFeedBackForm.email;
@@ -35,8 +38,13 @@ function checkStorageContent() {
 
 checkStorageContent();
 
-function onBtnSubmit() {  
-  console.log(localStorage.getItem('STORAGE_KEY'));
+function onBtnSubmit(event) {
+  event.preventDefault();
+  feedBackForm = {
+    email: form.email.value,  
+    message: form.message.value,        
+  };
+  console.log(feedBackForm);  
   form.email.value = '';
   form.message.value = '';
   saveFeedBackForm = localStorage.clear();
