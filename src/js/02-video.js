@@ -16,15 +16,7 @@ const onPlay = function({ seconds }) {
 player.on('timeupdate', throttle(onPlay, 1000));
 
 if (setCurrentTime) {
-    player.setCurrentTime(setCurrentTime).then(function(seconds) {
-        if (setCurrentTime === null) {
-            setCurrentTime = 0;
-            console.log('currentTime_0:', setCurrentTime);
-        }
-        else {
-            console.log('currentTime_set:', setCurrentTime);
-        };
-    }).catch(function(error) {
+    player.setCurrentTime(setCurrentTime).then(function(seconds) {console.log('currentTime_set:', setCurrentTime);}).catch(function(error) {
         switch (error.name) {
             case 'RangeError':
                 // console.log('время было меньше 0 или больше, чем продолжительность видео');            
